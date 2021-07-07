@@ -1,0 +1,4 @@
+enum Category {
+  young,
+  none,
+}
