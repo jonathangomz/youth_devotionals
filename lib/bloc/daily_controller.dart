@@ -17,7 +17,6 @@ class DailyController extends GetxController {
         .then((value) => devotional(value ?? Devotional.empty()))
         .catchError((_) {
       haveError(true);
-      isLoading(false);
     }).then((_) => isLoading(false));
     super.onInit();
   }
@@ -33,10 +32,8 @@ class DailyController extends GetxController {
     // Reset current devotional to clean the screen
     devotional(Devotional.empty());
 
-    // If cannot retrieve the daily devotional then try to let the current loaded devotional
     fetchDailyDevotional().then((value) {
       if (value == null) {
-        haveError(true);
         Get.snackbar('Error', 'Ocurrió un error',
             snackPosition: SnackPosition.BOTTOM,
             icon: Icon(
@@ -45,6 +42,7 @@ class DailyController extends GetxController {
             ),
             margin: EdgeInsets.zero);
       }
+      // If cannot retrieve the daily devotional then try to let the current loaded devotional
       devotional(value ?? _tmpDevotional ?? Devotional.empty());
     }).catchError((_) {
       devotional(_tmpDevotional ?? Devotional.empty());

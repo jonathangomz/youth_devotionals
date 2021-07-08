@@ -27,6 +27,15 @@ class Devotional {
       required this.category,
       required this.book});
 
+  Devotional.withDefaults(
+      {this.title: '',
+      this.vers: '',
+      this.content: const [],
+      this.category: Category.none,
+      this.book: '',
+      DateTime? customDate})
+      : this.date = customDate ?? DateTime(1997, 01, 15);
+
   Devotional.empty()
       : this.title = '',
         this.date = DateTime.now(),

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:young_devotionals/bloc/daily_controller.dart';
@@ -13,7 +14,7 @@ class MyHomePage extends StatelessWidget {
       child: Obx(
         () => Scaffold(
           body: CustomScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               SliverAppBar(
                 forceElevated: true,
@@ -24,7 +25,10 @@ class MyHomePage extends StatelessWidget {
                 stretch: false,
                 stretchTriggerOffset: 200,
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Text(_today.devotional.value.title),
+                  title: Text(
+                    _today.devotional.value.title,
+                    textAlign: TextAlign.center,
+                  ),
                   stretchModes: [
                     StretchMode.zoomBackground,
                     StretchMode.blurBackground,
@@ -34,41 +38,41 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
               SliverList(
-                delegate: SliverChildListDelegate(_today.isLoading.value
+                delegate: SliverChildListDelegate(this._today.isLoading.value
                     ? [
                         Padding(
                             padding: EdgeInsets.only(top: 38),
                             child: Center(child: CircularProgressIndicator()))
                       ]
                     : [
-                        Container(
-                          margin: EdgeInsets.all(12),
-                          padding: EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              border: Border.all(
-                                width: 2,
-                                color: Colors.blue,
+                        if (this._today.devotional.value.vers.isNotEmpty)
+                          Container(
+                            margin: EdgeInsets.all(26),
+                            padding: EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).cardColor,
+                                border: Border.all(
+                                  width: 2,
+                                  color: Colors.blue,
+                                ),
+                                borderRadius: BorderRadius.circular(5),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: Offset(0, 1),
+                                    blurRadius: 2,
+                                    color: Colors.grey,
+                                  )
+                                ]),
+                            child: Text(
+                              _today.devotional.value.vers,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
-                              borderRadius: BorderRadius.circular(5),
-                              boxShadow: [
-                                BoxShadow(
-                                  offset: Offset(0, 1),
-                                  blurRadius: 2,
-                                  color: Colors.grey,
-                                )
-                              ]),
-                          child: Text(
-                            _today.devotional.value.vers,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ),
-                        Divider(),
                         ..._today.devotional.value.content
                             .map((paragraph) => Padding(
                                   padding: EdgeInsets.only(

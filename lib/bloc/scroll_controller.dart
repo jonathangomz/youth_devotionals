@@ -8,7 +8,8 @@ class ScrollCtrl extends GetxController {
   @override
   void onInit() {
     controller.value.addListener(() {
-      if (!controller.value.position.outOfRange) {
+      if (!controller.value.position.outOfRange &&
+          controller.value.position.maxScrollExtent > 0) {
         percentage(controller.value.offset /
             controller.value.position.maxScrollExtent);
       }

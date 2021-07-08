@@ -17,6 +17,10 @@ Future<Devotional?> fetchDailyDevotional() async {
 
   if (isOk && res != null && res.statusCode <= 299 && res.statusCode >= 200) {
     devotional = Devotional.fromJson(jsonDecode(res.body));
+  } else if (res != null && res.statusCode == 404) {
+    devotional = Devotional.withDefaults(
+        title: 'Ups',
+        content: ['El devocional para esta fecha no lo he escrito jeje 😅']);
   }
   return devotional;
 }
