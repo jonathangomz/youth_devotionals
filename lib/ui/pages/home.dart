@@ -74,8 +74,11 @@ class DailyDevotional extends StatelessWidget {
                 delegate: SliverChildListDelegate(this._today.isLoading.value
                     ? [
                         Padding(
-                            padding: EdgeInsets.only(top: 38),
-                            child: Center(child: CircularProgressIndicator()))
+                          padding: EdgeInsets.only(top: 38),
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        )
                       ]
                     : [
                         if (this._today.devotional.value.vers.isNotEmpty)
@@ -100,20 +103,26 @@ class DailyDevotional extends StatelessWidget {
                               _today.devotional.value.vers,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: this._readerTheme.fontSize.value),
+                                fontWeight: FontWeight.bold,
+                                fontSize: this._readerTheme.fontSize.value,
+                              ),
                             ),
                           ),
                         ..._today.devotional.value.content
                             .map((paragraph) => Padding(
                                   padding: EdgeInsets.only(
-                                      left: 24, right: 24, top: 0, bottom: 18),
+                                    left: 24,
+                                    right: 24,
+                                    top: 0,
+                                    bottom: 18,
+                                  ),
                                   child: Text(
                                     paragraph,
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
-                                        fontSize:
-                                            this._readerTheme.fontSize.value),
+                                      fontSize:
+                                          this._readerTheme.fontSize.value,
+                                    ),
                                   ),
                                 ))
                             .toList(),
