@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class ScrollCtrl extends GetxController {
   var controller = ScrollController().obs;
   var percentage = 0.0.obs;
+  var getToBottom = false;
 
   @override
   void onInit() {
@@ -14,6 +15,22 @@ class ScrollCtrl extends GetxController {
             controller.value.position.maxScrollExtent);
       }
     });
+
+    this.percentage.listen((v) {
+      if (v >= 0.99 && !getToBottom) {
+        getToBottom = true;
+        Get.snackbar(
+          'Listo!',
+          'Has leído todo el devocional de hoy 😃',
+          snackPosition: SnackPosition.BOTTOM,
+          icon: Icon(
+            Icons.done,
+            color: Colors.green,
+          ),
+        );
+      }
+    });
+
     super.onInit();
   }
 }
