@@ -36,6 +36,13 @@ class MyHomePage extends StatelessWidget {
                   ],
                   centerTitle: true,
                 ),
+                bottom: PreferredSize(
+                  child: LinearProgressIndicator(
+                    value: _scroll.percentage.value,
+                    minHeight: 4,
+                  ),
+                  preferredSize: Size(double.infinity, 4),
+                ),
               ),
               SliverList(
                 delegate: SliverChildListDelegate(this._today.isLoading.value
@@ -88,10 +95,6 @@ class MyHomePage extends StatelessWidget {
               ),
             ],
             controller: _scroll.controller.value,
-          ),
-          bottomNavigationBar: LinearProgressIndicator(
-            value: _scroll.percentage.value,
-            minHeight: 4,
           ),
         ),
       ),
