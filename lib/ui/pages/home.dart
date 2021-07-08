@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:young_devotionals/bloc/daily_controller.dart';
 import 'package:young_devotionals/bloc/scroll_controller.dart';
+import 'package:young_devotionals/bloc/reader_theme_controller.dart';
 
 class DailyDevotional extends StatelessWidget {
   final DailyController _today = Get.put(DailyController());
   final ReadController _read = Get.put(ReadController());
+  final ThemeReaderController _readerTheme = Get.put(ThemeReaderController());
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,34 @@ class DailyDevotional extends StatelessWidget {
                   ),
                   centerTitle: true,
                 ),
+                actions: [
+                  PopupMenuButton(
+                    itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+                      PopupMenuItem(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: OutlinedButton(
+                                child: Icon(Icons.add),
+                                onPressed: () =>
+                                    this._readerTheme.increaseFont(),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: OutlinedButton(
+                                child: Icon(Icons.remove),
+                                onPressed: () =>
+                                    this._readerTheme.decreaseFont(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
                 bottom: PreferredSize(
                   child: LinearProgressIndicator(
                     color: Theme.of(context).accentColor,
@@ -69,7 +99,9 @@ class DailyDevotional extends StatelessWidget {
                             child: Text(
                               _today.devotional.value.vers,
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodyText1,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: this._readerTheme.fontSize.value),
                             ),
                           ),
                         ..._today.devotional.value.content
@@ -79,8 +111,9 @@ class DailyDevotional extends StatelessWidget {
                                   child: Text(
                                     paragraph,
                                     textAlign: TextAlign.justify,
-                                    style:
-                                        Theme.of(context).textTheme.bodyText2,
+                                    style: TextStyle(
+                                        fontSize:
+                                            this._readerTheme.fontSize.value),
                                   ),
                                 ))
                             .toList(),
