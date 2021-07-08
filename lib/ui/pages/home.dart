@@ -29,15 +29,11 @@ class DailyDevotional extends StatelessWidget {
                     _today.devotional.value.title,
                     textAlign: TextAlign.center,
                   ),
-                  stretchModes: [
-                    StretchMode.zoomBackground,
-                    StretchMode.blurBackground,
-                    StretchMode.fadeTitle,
-                  ],
                   centerTitle: true,
                 ),
                 bottom: PreferredSize(
                   child: LinearProgressIndicator(
+                    color: Theme.of(context).accentColor,
                     value: _read.percentage.value,
                     minHeight: 4,
                   ),
@@ -55,29 +51,25 @@ class DailyDevotional extends StatelessWidget {
                         if (this._today.devotional.value.vers.isNotEmpty)
                           Container(
                             margin: EdgeInsets.all(26),
-                            padding: EdgeInsets.all(6),
+                            padding: EdgeInsets.all(36),
                             decoration: BoxDecoration(
                                 color: Theme.of(context).cardColor,
                                 border: Border.all(
                                   width: 2,
-                                  color: Colors.blue,
+                                  color: Theme.of(context).accentColor,
                                 ),
                                 borderRadius: BorderRadius.circular(5),
                                 boxShadow: [
                                   BoxShadow(
                                     offset: Offset(0, 1),
-                                    blurRadius: 2,
-                                    color: Colors.grey,
+                                    blurRadius: 4,
+                                    color: Theme.of(context).shadowColor,
                                   )
                                 ]),
                             child: Text(
                               _today.devotional.value.vers,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ),
                         ..._today.devotional.value.content
@@ -87,7 +79,8 @@ class DailyDevotional extends StatelessWidget {
                                   child: Text(
                                     paragraph,
                                     textAlign: TextAlign.justify,
-                                    style: TextStyle(fontSize: 18),
+                                    style:
+                                        Theme.of(context).textTheme.bodyText2,
                                   ),
                                 ))
                             .toList(),
