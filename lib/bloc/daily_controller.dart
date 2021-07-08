@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:young_devotionals/api/today.dart';
+import 'package:young_devotionals/api/daily.dart';
 import 'package:young_devotionals/models/devotional.dart';
 
 class DailyController extends GetxController {

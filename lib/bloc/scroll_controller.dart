@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ScrollCtrl extends GetxController {
+class ReadController extends GetxController {
   var controller = ScrollController().obs;
   var percentage = 0.0.obs;
   var getToBottom = false;

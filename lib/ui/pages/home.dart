@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:young_devotionals/bloc/daily_controller.dart';
 import 'package:young_devotionals/bloc/scroll_controller.dart';
 
-class MyHomePage extends StatelessWidget {
+class DailyDevotional extends StatelessWidget {
   final DailyController _today = Get.put(DailyController());
-  final ScrollCtrl _scroll = Get.put(ScrollCtrl());
+  final ReadController _read = Get.put(ReadController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class MyHomePage extends StatelessWidget {
                 ),
                 bottom: PreferredSize(
                   child: LinearProgressIndicator(
-                    value: _scroll.percentage.value,
+                    value: _read.percentage.value,
                     minHeight: 4,
                   ),
                   preferredSize: Size(double.infinity, 4),
@@ -94,7 +94,7 @@ class MyHomePage extends StatelessWidget {
                       ]),
               ),
             ],
-            controller: _scroll.controller.value,
+            controller: _read.controller.value,
           ),
         ),
       ),
