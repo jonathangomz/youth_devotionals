@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'ui/pages/home.dart';
+import 'ui/pages/DailyDevotional.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(YouthDevotinals());
 }
 
-class MyApp extends StatelessWidget {
+class YouthDevotinals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

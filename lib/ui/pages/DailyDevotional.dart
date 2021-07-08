@@ -15,6 +15,20 @@ class DailyDevotional extends StatelessWidget {
     return RefreshIndicator(
       child: Obx(
         () => Scaffold(
+          drawer: Drawer(
+            child: ListView(
+              children: [
+                Card(
+                  child: Column(
+                    children: [
+                      Icon(Icons.analytics),
+                      Text('Analíticas'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           body: CustomScrollView(
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
