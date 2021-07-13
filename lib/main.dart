@@ -12,7 +12,7 @@ class YouthDevotinals extends StatelessWidget {
     return GetMaterialApp(
       title: 'Youth Devotionals',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
         textTheme: TextTheme(
           bodyText1: TextStyle(
             color: Colors.black,
